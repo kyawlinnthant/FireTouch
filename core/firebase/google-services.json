@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "854571229670",
+    "project_id": "firetouch-47b2b",
+    "storage_bucket": "firetouch-47b2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854571229670:android:2cac92f4fabc2a6a99f627",
+        "android_client_info": {
+          "package_name": "com.kyawlinnthant.firetouch.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854571229670-de13qgc1cv19c5f7pljdu41io1pp4fmu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kyawlinnthant.firetouch.firebase",
+            "certificate_hash": "2cb80f34239f5023a905e794874eb0651d8ea8f6"
+          }
+        },
+        {
+          "client_id": "854571229670-rkadonigdrgiishvp5fvvm70n95a31fi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPekmztoB0pUcyTBifqv0E4yjD7bSenhg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854571229670-006bl156rblha95bki8gk827cp466bjg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
