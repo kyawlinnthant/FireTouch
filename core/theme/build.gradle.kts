@@ -1,6 +1,6 @@
 plugins {
-    id("kyawlinnthant.application")
-    id("kyawlinnthant.compose")
+    id("kyawlinnthant.library")
+    id("kyawlinnthant.compose.library")
     id("kyawlinnthant.hilt")
 }
 

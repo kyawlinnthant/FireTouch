@@ -19,8 +19,8 @@ gradlePlugin {
             implementationClass = "ApplicationPlugin"
         }
         register("androidApplicationCompose") {
-            id = "kyawlinnthant.compose"
-            implementationClass = "ComposePlugin"
+            id = "kyawlinnthant.compose.application"
+            implementationClass = "ApplicationComposePlugin"
         }
         register("androidDaggerHilt") {
             id = "kyawlinnthant.hilt"
@@ -29,6 +29,14 @@ gradlePlugin {
         register("androidFirebase"){
             id = "kyawlinnthant.firebase"
             implementationClass = "FirebasePlugin"
+        }
+        register("androidLibrary"){
+            id = "kyawlinnthant.library"
+            implementationClass = "LibraryPlugin"
+        }
+        register("androidLibraryCompose") {
+            id = "kyawlinnthant.compose.library"
+            implementationClass = "LibraryComposePlugin"
         }
     }
 }

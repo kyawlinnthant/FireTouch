@@ -4,7 +4,7 @@
 
 plugins {
     id("kyawlinnthant.application")
-    id("kyawlinnthant.compose")
+    id("kyawlinnthant.compose.application")
     id("kyawlinnthant.hilt")
 //    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.ktlint)
@@ -19,10 +19,6 @@ android {
         versionCode = 1
         versionName = "0.0.1" // X.Y.Z ( Major.Minor.Patch)
         multiDexEnabled = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -66,4 +62,5 @@ dependencies {
     implementation(project(":feature:auth:presentation"))
     implementation(project(":feature:feed:presentation"))
     implementation(libs.splashscreen)
+    implementation(libs.multidex)
 }

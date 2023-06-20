@@ -1,5 +1,5 @@
 plugins {
-    id("kyawlinnthant.application")
+    id("kyawlinnthant.library")
     id("kyawlinnthant.hilt")
 }
 

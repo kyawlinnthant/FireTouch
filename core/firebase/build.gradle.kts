@@ -1,8 +1,5 @@
-@file:Suppress("UnstableApiUsage")
-
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("kyawlinnthant.application")
+    id("kyawlinnthant.library")
     id("kyawlinnthant.hilt")
     id("kyawlinnthant.firebase")
 }
