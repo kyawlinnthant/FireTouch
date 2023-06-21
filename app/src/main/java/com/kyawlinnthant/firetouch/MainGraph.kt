@@ -19,7 +19,7 @@ fun MainGraph() {
 
     NavigationInstructor(
         instructor = instructor,
-        controller = navController
+        controller = navController,
     )
 
     isLoggedIn.value?.let {
@@ -27,7 +27,7 @@ fun MainGraph() {
         NavHost(
             navController = navController,
             startDestination = startDestination,
-            route = Graph.Root.route
+            route = Graph.Root.route,
         ) {
             authGraph(navController)
             feedGraph(navController)

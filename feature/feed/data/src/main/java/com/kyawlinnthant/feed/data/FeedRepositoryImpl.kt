@@ -8,8 +8,8 @@ import javax.inject.Inject
 
 class FeedRepositoryImpl @Inject constructor(
     private val firebaseSource: FirebaseSource,
-    private val pref : PrefSource
-) : FeedRepository{
+    private val pref: PrefSource
+) : FeedRepository {
     override suspend fun signOut(): SignOutResponse {
         val result = firebaseSource.logout()
         result.data?.let {

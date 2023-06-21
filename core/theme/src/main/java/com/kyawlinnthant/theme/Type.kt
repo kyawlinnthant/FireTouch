@@ -16,7 +16,7 @@ val fonts = FontFamily(
     Font(R.font.sans_semi_condensed_light, weight = FontWeight.Light),
     Font(R.font.sans_semi_condensed_extra_light, weight = FontWeight.ExtraLight),
     Font(R.font.sans_semi_condensed_extra_bold, weight = FontWeight.ExtraBold),
-    Font(R.font.sans_semi_condensed_semi_bold, weight = FontWeight.SemiBold),
+    Font(R.font.sans_semi_condensed_semi_bold, weight = FontWeight.SemiBold)
 )
 
 // Set of Material typography styles to start with
@@ -34,7 +34,7 @@ val Typography = Typography(
     displaySmall = TextStyle(
         fontFamily = fonts,
         lineHeight = 44.sp,
-        fontSize = 36.sp,
+        fontSize = 36.sp
     ),
     headlineLarge = TextStyle(
         fontFamily = fonts,
@@ -72,11 +72,11 @@ val Typography = Typography(
         fontSize = 16.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = fonts,
+        fontFamily = fonts
 
-        ),
+    ),
     bodySmall = TextStyle(
-        fontFamily = fonts,
+        fontFamily = fonts
     ),
     labelLarge = TextStyle(
         fontFamily = fonts,

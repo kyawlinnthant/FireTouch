@@ -16,7 +16,7 @@ object PrefDatastoreModule {
     @Provides
     @Singleton
     fun providePrefStore(
-        @ApplicationContext context : Context
+        @ApplicationContext context: Context
     ) = PreferenceDataStoreFactory.create(
         produceFile = {
             context.preferencesDataStoreFile(PrefSourceImpl.PREF_NAME)

@@ -10,6 +10,14 @@ plugins {
     alias(libs.plugins.android.kotlin).apply(false)
     alias(libs.plugins.kotlin.serialization).apply(false)
     alias(libs.plugins.hilt).apply(false)
+    alias(libs.plugins.ktlint).apply(false)
+}
+subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
+    // Optionally configure plugin
+    configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+        debug.set(true)
+    }
 }
 //Workaround for "Expecting an expression" build error
 println("")

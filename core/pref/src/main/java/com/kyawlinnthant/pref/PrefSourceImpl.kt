@@ -16,9 +16,9 @@ import java.io.IOException
 import javax.inject.Inject
 
 class PrefSourceImpl @Inject constructor(
-    private val store : DataStore<Preferences>,
-    @DispatcherModule.IO private val io : CoroutineDispatcher
-) : PrefSource{
+    private val store: DataStore<Preferences>,
+    @DispatcherModule.IO private val io: CoroutineDispatcher
+) : PrefSource {
 
     companion object {
         const val PREF_NAME = "ds.pref"

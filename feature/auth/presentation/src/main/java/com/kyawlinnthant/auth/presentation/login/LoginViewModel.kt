@@ -3,11 +3,13 @@ package com.kyawlinnthant.auth.presentation.login
 import android.content.Intent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.GoogleAuthProvider
 import com.kyawlinnthant.auth.presentation.common.FormValidator
+import com.kyawlinnthant.common.DataResult
 import com.kyawlinnthant.navigation.AppNavigator
+import com.kyawlinnthant.navigation.Graph
 import com.kyawlinnthant.navigation.Screen
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -16,13 +18,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-//    private val repo: Repository,
+    private val useCase: LoginUseCase,
     private val navigator: AppNavigator
 ) : ViewModel() {
-
     private val vmEvent = MutableSharedFlow<LoginEvent>()
     val uiEvent get() = vmEvent.asSharedFlow()
 
@@ -90,8 +92,8 @@ class LoginViewModel @Inject constructor(
             vmState.update {
                 it.copy(isLoading = true)
             }
-          /*  viewModelScope.launch {
-                repo.signInWithEmail(
+            viewModelScope.launch {
+                useCase.signIn(
                     email = email,
                     pwd = pwd
                 ).also {
@@ -99,11 +101,17 @@ class LoginViewModel @Inject constructor(
                         state.copy(isLoading = true)
                     }
                     when (it) {
-                        is com.kyawlinnthant.common.DataResult.Fail -> {
+                        is DataResult.Fail -> {
+                            vmState.update { state ->
+                                state.copy(isLoading = false)
+                            }
                             vmEvent.emit(LoginEvent.Snack(it.message))
                         }
 
-                        is com.kyawlinnthant.common.DataResult.Success -> {
+                        is DataResult.Success -> {
+                            vmState.update { state ->
+                                state.copy(isLoading = false)
+                            }
                             navigator.to(
                                 route = Graph.Feature.route,
                                 popupToRoute = Graph.Auth.route,
@@ -112,7 +120,7 @@ class LoginViewModel @Inject constructor(
                         }
                     }
                 }
-            }*/
+            }
         }
     }
 
@@ -124,9 +132,9 @@ class LoginViewModel @Inject constructor(
             )
         }
         viewModelScope.launch {
-           /* repo.getSignInResult().also {
+            useCase.getResult().also {
                 when (it) {
-                    is com.kyawlinnthant.common.DataResult.Fail -> {
+                    is DataResult.Fail -> {
                         vmState.update { state ->
                             state.copy(
                                 googleLoading = false,
@@ -136,11 +144,11 @@ class LoginViewModel @Inject constructor(
                         vmEvent.emit(LoginEvent.Snack(it.message))
                     }
 
-                    is com.kyawlinnthant.common.DataResult.Success -> vmEvent.emit(
+                    is DataResult.Success -> vmEvent.emit(
                         LoginEvent.LaunchGoogleAccounts(it.data)
                     )
                 }
-            }*/
+            }
         }
     }
 
@@ -155,13 +163,13 @@ class LoginViewModel @Inject constructor(
 
     fun getSignInCredential(intent: Intent?) {
         viewModelScope.launch {
-            /*repo.getSignInCredential(intent).also {
+            useCase.getCredential(intent).also {
                 when (it) {
-                    is com.kyawlinnthant.common.DataResult.Fail -> vmEvent.emit(
+                    is DataResult.Fail -> vmEvent.emit(
                         LoginEvent.Snack(it.message)
                     )
 
-                    is com.kyawlinnthant.common.DataResult.Success -> {
+                    is DataResult.Success -> {
                         vmState.update { state ->
                             state.copy(isLoading = true)
                         }
@@ -171,16 +179,16 @@ class LoginViewModel @Inject constructor(
                             googleIdToken,
                             null
                         )
-                        repo.signInWithCredential(googleCredentials).also { result ->
+                        useCase.signInWithCredential(googleCredentials).also { result ->
                             vmState.update { state ->
                                 state.copy(isLoading = false)
                             }
                             when (result) {
-                                is com.kyawlinnthant.common.DataResult.Fail -> {
+                                is DataResult.Fail -> {
                                     vmEvent.emit(LoginEvent.Snack(result.message))
                                 }
 
-                                is com.kyawlinnthant.common.DataResult.Success -> {
+                                is DataResult.Success -> {
                                     navigator.to(
                                         route = Graph.Feature.route,
                                         popupToRoute = Graph.Auth.route,
@@ -191,7 +199,7 @@ class LoginViewModel @Inject constructor(
                         }
                     }
                 }
-            }*/
+            }
         }
     }
 }

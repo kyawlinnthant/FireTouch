@@ -3,8 +3,6 @@ package com.kyawlinnthant.feed.presentation.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kyawlinnthant.common.DataResult
-import com.kyawlinnthant.feed.domain.GetCurrentUser
-import com.kyawlinnthant.feed.domain.Logout
 import com.kyawlinnthant.navigation.AppNavigator
 import com.kyawlinnthant.navigation.Graph
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,8 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val logout: Logout,
-    private val getCurrentUser: GetCurrentUser,
+    private val useCase: ProfileUseCase,
     private val navigator: AppNavigator
 ) : ViewModel() {
 
@@ -38,7 +35,7 @@ class ProfileViewModel @Inject constructor(
 
     private fun getUser() {
         viewModelScope.launch {
-            getCurrentUser().collect {
+            useCase.currentUser().collect {
                 vmState.update { state ->
                     state.copy(
                         currentUser = it
@@ -50,7 +47,7 @@ class ProfileViewModel @Inject constructor(
 
     fun doLogout() {
         viewModelScope.launch {
-            logout().also {
+            useCase.logout().also {
                 when (it) {
                     is DataResult.Fail -> {
                     }

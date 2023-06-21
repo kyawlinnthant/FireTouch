@@ -7,4 +7,3 @@ sealed class Screen(val name: String) {
     object Profile : Screen("profile")
     object Feed : Screen("feed")
 }
-

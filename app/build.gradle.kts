@@ -6,8 +6,6 @@ plugins {
     id("kyawlinnthant.application")
     id("kyawlinnthant.compose.application")
     id("kyawlinnthant.hilt")
-//    alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ktlint)
 }
 
 android {
@@ -30,31 +28,29 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
-    }
-    buildFeatures {
-        buildConfig = true
     }
 }
 
 tasks.getByPath("preBuild").dependsOn("ktlintFormat")
 
 ktlint {
+    version.set(libs.versions.ktlintVersion.get())
     android.set(true)
+    verbose.set(true)
     ignoreFailures.set(true)
+    outputColorName.set("RED")
     reporters {
-        reporter(reporterType = org.jlleitschuh.gradle.ktlint.reporter.ReporterType.PLAIN)
+        reporter(reporterType = org.jlleitschuh.gradle.ktlint.reporter.ReporterType.JSON)
         reporter(reporterType = org.jlleitschuh.gradle.ktlint.reporter.ReporterType.CHECKSTYLE)
         reporter(reporterType = org.jlleitschuh.gradle.ktlint.reporter.ReporterType.SARIF)
     }
-    disabledRules.set(
-        listOf(
-            "no-wildcard-imports",
-            "max-line-length"
-        )
-    )
+    filter {
+        exclude("**/generated/**")
+        include("**/*.kt", "**/*.kts")
+    }
 }
 
 dependencies {

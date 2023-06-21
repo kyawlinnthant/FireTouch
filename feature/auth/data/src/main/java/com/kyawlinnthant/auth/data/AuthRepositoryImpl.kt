@@ -1,8 +1,6 @@
 package com.kyawlinnthant.auth.data
 
 import android.content.Intent
-import com.google.android.gms.auth.api.identity.BeginSignInResult
-import com.google.android.gms.auth.api.identity.SignInCredential
 import com.google.firebase.auth.AuthCredential
 import com.kyawlinnthant.common.DataResult
 import com.kyawlinnthant.firetouch.firebase.FirebaseSource
@@ -12,8 +10,8 @@ import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val firebaseSource: FirebaseSource,
-    private val pref : PrefSource
-) : AuthRepository{
+    private val pref: PrefSource
+) : AuthRepository {
     override suspend fun getAuthenticated(): Boolean {
         return false
     }
@@ -47,18 +45,18 @@ class AuthRepositoryImpl @Inject constructor(
             is DataResult.Fail -> DataResult.Fail(result.message)
             is DataResult.Success -> {
                 val isSuccessful = result.data != CurrentUser()
-                //save in datastore
+                // save in datastore
                 pref.putAuthenticated(isSuccessful)
                 DataResult.Success(isSuccessful)
             }
         }
     }
 
-    override suspend fun getSignInResult(): DataResult<BeginSignInResult> {
+    override suspend fun getSignInResult(): SignInResultResponse {
         return firebaseSource.oneTapSignIn()
     }
 
-    override suspend fun getSignInCredential(intent: Intent?): DataResult<SignInCredential> {
+    override suspend fun getSignInCredential(intent: Intent?): SignInCredentialResponse {
         return firebaseSource.getSignInCredential(intent)
     }
 }

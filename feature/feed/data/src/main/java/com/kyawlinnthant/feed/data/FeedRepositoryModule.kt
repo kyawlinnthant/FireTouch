@@ -11,5 +11,5 @@ import javax.inject.Singleton
 interface FeedRepositoryModule {
     @Binds
     @Singleton
-    fun bindsFeedRepo(repo : FeedRepositoryImpl) : FeedRepository
+    fun bindsFeedRepo(repo: FeedRepositoryImpl): FeedRepository
 }

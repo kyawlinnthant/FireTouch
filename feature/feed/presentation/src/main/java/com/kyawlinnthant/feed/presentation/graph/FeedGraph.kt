@@ -8,7 +8,6 @@ import com.kyawlinnthant.feed.presentation.profile.ProfileScreen
 import com.kyawlinnthant.navigation.Graph
 import com.kyawlinnthant.navigation.Screen
 
-
 fun NavGraphBuilder.feedGraph(
     controller: NavHostController
 ) {

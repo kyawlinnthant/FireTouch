@@ -1,6 +1,7 @@
 package com.kyawlinnthant.firetouch.firebase
 
 import android.content.Intent
+import android.util.Log
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -13,10 +14,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.kyawlinnthant.common.Constant
 import com.kyawlinnthant.common.DataResult
 import com.kyawlinnthant.model.CurrentUser
-import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
 class FirebaseSourceImpl @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
@@ -35,6 +36,7 @@ class FirebaseSourceImpl @Inject constructor(
                 val signupResult = oneTapClient.beginSignIn(signupRequest).await()
                 DataResult.Success(signupResult)
             } catch (e: Exception) {
+                Log.e("signin.error", "$e")
                 DataResult.Fail(e.localizedMessage ?: "Something's Wrong!")
             }
         }

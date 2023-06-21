@@ -5,7 +5,7 @@ import com.kyawlinnthant.feed.data.FeedRepository
 import javax.inject.Inject
 
 class Logout @Inject constructor(
-    private val repo : FeedRepository
+    private val repo: FeedRepository
 ) {
     suspend operator fun invoke(): DataResult<Boolean> {
         return repo.signOut()

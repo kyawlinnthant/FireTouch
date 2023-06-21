@@ -5,15 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.kyawlinnthant.auth.domain.GetAuthenticatedStatus
 import com.kyawlinnthant.navigation.AppNavigator
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getAuthenticatedStatus: GetAuthenticatedStatus,
-    private val appNavigator: AppNavigator
+    private val appNavigator: AppNavigator,
 ) : ViewModel() {
 
     private val vmLoggedIn = MutableStateFlow<Boolean?>(null)

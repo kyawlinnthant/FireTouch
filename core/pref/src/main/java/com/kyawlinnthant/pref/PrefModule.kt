@@ -11,5 +11,5 @@ import javax.inject.Singleton
 interface PrefModule {
     @Binds
     @Singleton
-    fun bindPrefStore(pref : PrefSourceImpl) : PrefSource
+    fun bindPrefStore(pref: PrefSourceImpl): PrefSource
 }
