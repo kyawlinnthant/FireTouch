@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.Detekt
+
 buildscript {
     dependencies {
         classpath("com.google.gms:google-services:${libs.versions.google.services.get()}")
@@ -11,10 +13,12 @@ plugins {
     alias(libs.plugins.kotlin.serialization).apply(false)
     alias(libs.plugins.hilt).apply(false)
     alias(libs.plugins.ktlint).apply(false)
+    alias(libs.plugins.detekt).apply(false)
 }
 subprojects {
-    apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version should be inherited from parent
-    // Optionally configure plugin
+    apply(plugin = "org.jlleitschuh.gradle.ktlint") // code style, format
+    apply(plugin = "io.gitlab.arturbosch.detekt") // code smell, naming
+
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         debug.set(true)
     }

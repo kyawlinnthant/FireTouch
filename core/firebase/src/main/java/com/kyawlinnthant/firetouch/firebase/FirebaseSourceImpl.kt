@@ -114,8 +114,4 @@ class FirebaseSourceImpl @Inject constructor(
             fireStore.collection(Constant.USERS).document(user.uid).set(fireStoreUser).await()
         }
     }
-
-    private suspend fun getUsersFromFireStore() {
-//        val users = fireStore.collection(Constant.USERS).whereEqualTo("id",uid)
-    }
 }

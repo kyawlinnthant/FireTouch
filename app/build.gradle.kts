@@ -1,5 +1,7 @@
 @file: Suppress("UnstableApiUsage")
 
+import io.gitlab.arturbosch.detekt.Detekt
+
 @Suppress("DSL_SCOPE_VIOLATION")
 
 plugins {
@@ -50,6 +52,31 @@ ktlint {
     filter {
         exclude("**/generated/**")
         include("**/*.kt", "**/*.kts")
+    }
+}
+detekt {
+    parallel = true
+    allRules = true
+    autoCorrect = true
+    buildUponDefaultConfig = true
+    source.setFrom(files(projectDir))
+    config.setFrom(file("${rootProject.rootDir}/config/detekt/detekt.yml"))
+
+    tasks.withType<Detekt>().configureEach {
+        include("**/*.kt", "**/*.kts")
+        exclude("**/build/**")
+
+        jvmTarget = JavaVersion.VERSION_17.toString()
+
+        reports {
+            txt.required.set(false)
+            sarif.required.set(false)
+            md.required.set(false)
+            html.required.set(true)
+            html.outputLocation.set(file("${project.buildDir}/reports/detekt/detekt.html"))
+            xml.required.set(true)
+            xml.outputLocation.set(file("${project.buildDir}/reports/detekt/detekt.xml")) // It's required for Sonar
+        }
     }
 }
 

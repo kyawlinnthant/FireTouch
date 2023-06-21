@@ -39,7 +39,8 @@ fun ProfileContent(
     modifier: Modifier = Modifier,
     paddingValues: PaddingValues,
     user: CurrentUser,
-    onLogout: () -> Unit = {}
+    onLogout: () -> Unit = {},
+    profileImgRatio: Float = 1.33f
 ) {
     Column(
         modifier = modifier
@@ -53,7 +54,7 @@ fun ProfileContent(
             contentScale = ContentScale.Crop,
             modifier = modifier
                 .fillMaxWidth()
-                .aspectRatio(1.33f)
+                .aspectRatio(profileImgRatio)
         )
         Text(text = user.name)
         Text(text = user.email)

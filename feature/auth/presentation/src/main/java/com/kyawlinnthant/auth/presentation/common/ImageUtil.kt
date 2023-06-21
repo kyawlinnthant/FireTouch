@@ -6,6 +6,10 @@ import android.provider.OpenableColumns
 import androidx.core.content.FileProvider
 import java.io.File
 
+object ByteCalculator {
+    const val BYTE = 1024
+    const val DEFAULT_RETURN_NUMBER = -1
+}
 sealed interface ImageSize {
     object B : ImageSize
     object KB : ImageSize
@@ -14,8 +18,8 @@ sealed interface ImageSize {
 
 infix fun Long.asSize(expected: ImageSize): Long {
     val bytes = this
-    val kb = bytes / 1024
-    val mb = kb / 1024
+    val kb = bytes / ByteCalculator.BYTE
+    val mb = kb / ByteCalculator.BYTE
     return when (expected) {
         ImageSize.B -> bytes
         ImageSize.KB -> kb

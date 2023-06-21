@@ -4,6 +4,9 @@ import androidx.core.util.PatternsCompat
 import java.util.regex.Pattern
 
 object FormValidator {
+
+    private const val MIN_PWD_LENGTH = 8
+    private const val MAX_PWD_LENGTH = 20
     fun isVerifiedEmail(email: String): Boolean {
         return PatternsCompat.EMAIL_ADDRESS.matcher(email.trim()).matches()
     }
@@ -22,10 +25,10 @@ object FormValidator {
      */
 
     fun isVerifiedPassword(password: String): Boolean {
-        if (password.length < 8) {
+        if (password.length < MIN_PWD_LENGTH) {
             return false
         }
-        if (password.length > 20) {
+        if (password.length > MAX_PWD_LENGTH) {
             return false
         }
 
